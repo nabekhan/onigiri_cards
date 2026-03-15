@@ -101,7 +101,7 @@ def build_package():
     package = genanki.Package(all_decks)
     package.media_files = [str(css_file_path), str(js_file_path)]
 
-    package_file = root / "onigiri.apkg"
+    package_file = output_path / "onigiri.apkg"
     package.write_to_file(package_file)
 
     print(f"Build successful: {package_file}")
