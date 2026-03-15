@@ -17,6 +17,6 @@
 
 ### **Installation & Usage**
 
-1.  **Direct Download**: Download the master package: [`onigiri.apkg`](onigiri.apkg).
+1.  **Direct Download**: Download the master package.
 2.  **Import**: Open Anki and select **Import File** (or `⋮` -> `Import` on AnkiDroid).
 3.  **Note Types**: The package will automatically create the **Onigiri Basic**, **Onigiri Basic (and reversed card)**, and **Onigiri Cloze** note types.

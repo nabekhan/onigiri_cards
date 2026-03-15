@@ -83,7 +83,7 @@ def build_package():
         # Define Deck
         deck = genanki.Deck(
             ids_data["deck_id"],
-            f"Onigiri::{nt_name.replace('_', ' ').capitalize()}"
+            f"Onigiri Notes::{nt_name.replace('_', ' ').capitalize()}"
         )
 
         # Create Note
