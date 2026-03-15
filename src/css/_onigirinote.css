@@ -1,0 +1,246 @@
+/* -------------------------------------------------- PREFERENCES */
+:root {
+  --card-max-width: 42em;
+  --card-text-align: left;
+  --font-size-regular: 17px;
+  --font-size-small: 13px;
+  --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --img-width: 60%;
+  --img-brightness: 0.85;
+  --img-filter: none;
+}
+
+/* -------------------------------------------------- COLORS (Pure Native via Variables) */
+.card {
+  /* Let Anki's window background show through entirely */
+  background-color: transparent;
+
+  /* Inherit Anki's exact text and border colors so there's zero clashing */
+  --text-fg: var(--text-fg, #000000);
+  --text-fg-faint: rgba(127, 127, 127, 0.8);
+  --text-bg-selected: rgba(0, 122, 255, 0.2);
+
+  /* Light mode: darken the background by 3% to create an elevated card */
+  --card-bg: rgba(0, 0, 0, 0.03);
+  --card-border: var(--border, rgba(0, 0, 0, 0.1));
+  --divider: var(--border, rgba(0, 0, 0, 0.1));
+
+  --tag-fg: var(--text-fg);
+  --tag-bg: rgba(0, 0, 0, 0.06);
+  --tag-fg-active: #ffffff;
+  --tag-bg-active: rgba(0, 0, 0, 0.6);
+
+  --accent: #007aff;
+  --cloze-fg: var(--accent);
+  --cloze-bg: transparent;
+
+  --link-fg: var(--accent);
+  --link-fg-active: #005bb5;
+}
+
+.card.night_mode, .nightMode {
+  /* Dark mode: lighten the exact Anki window background by 4% to elevate it natively */
+  --card-bg: rgba(255, 255, 255, 0.04);
+  --text-bg-selected: rgba(10, 132, 255, 0.3);
+
+  --tag-bg: rgba(255, 255, 255, 0.08);
+  --tag-fg-active: #000000;
+  --tag-bg-active: rgba(255, 255, 255, 0.8);
+
+  --accent: #0a84ff;
+  --link-fg-active: #5eacff;
+}
+
+/* -------------------------------------------------- BACKGROUND */
+.card {
+  cursor: default;
+  padding: 2em 1em;
+}
+.card::-webkit-scrollbar {
+  display: none;
+}
+
+/* -------------------------------------------------- FLASHCARD (Flat Container) */
+.onigiri-flashcard {
+  background-color: var(--card-bg);
+  border-radius: 16px;
+  border: 1px solid var(--card-border);
+  box-shadow: none;
+  color: var(--text-fg);
+  font-family: var(--font-family);
+  font-size: var(--font-size-regular);
+  line-height: 1.6;
+  margin: 0 auto 60px auto;
+  max-width: var(--card-max-width);
+  text-align: var(--card-text-align);
+  word-wrap: break-word;
+  overflow: hidden;
+}
+.onigiri-flashcard ::selection {
+  background-color: var(--text-bg-selected);
+}
+
+/* -------------------------------------------------- FIELDS */
+.onigiri-field {
+  margin: 1.5em 2.5em;
+}
+.mobile .onigiri-field {
+  margin: 1.2em 1.5em;
+}
+.onigiri-field--back {
+  color: var(--text-fg);
+}
+
+/* -------------------------------------------------- CLOZE */
+.cloze {
+  color: var(--cloze-fg);
+  font-weight: 700;
+}
+
+/* -------------------------------------------------- DECK BREADCRUMBS */
+.onigiri-deck {
+  margin: 0;
+  padding: 1.5em 2.5em 0 2.5em;
+  display: flex;
+  color: var(--text-fg-faint);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.mobile .onigiri-deck {
+  padding: 1.2em 1.5em 0 1.5em;
+}
+
+.onigiri-subdeck {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  opacity: 0.7;
+}
+.onigiri-subdeck:last-child {
+  opacity: 1;
+}
+
+/* -------------------------------------------------- TAGS (Neutral Pills) */
+.onigiri-tags {
+  margin: 1em 2.5em 2em 2.5em;
+  display: flex;
+  flex-flow: row wrap;
+  gap: 8px;
+}
+.mobile .onigiri-tags {
+  margin: 1em 1.5em 2em 1.5em;
+}
+
+.onigiri-tag {
+  all: initial;
+  background-color: var(--tag-bg);
+  border-radius: 12px;
+  color: var(--tag-fg);
+  display: inline-flex;
+  align-items: center;
+  font-size: 12px;
+  font-family: var(--font-family);
+  font-weight: 600;
+  padding: 4px 10px;
+  transition: background-color 0.15s ease, color 0.15s ease;
+  word-break: break-word;
+}
+.onigiri-tag:hover {
+  background-color: var(--tag-bg-active);
+  color: var(--tag-fg-active);
+  cursor: pointer;
+}
+
+/* -------------------------------------------------- DIVIDER */
+.onigiri-divider {
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px dashed var(--text-fg-faint); /* Thinner and matches breadcrumb color */
+  opacity: 0.3; /* Much softer so it doesn't scream for attention */
+  margin: 1em 0;
+  padding: 0;
+  width: 100%;
+}
+
+/* -------------------------------------------------- IMAGES */
+img {
+  border-radius: 8px;
+  border: 1px solid var(--card-border);
+  display: block;
+  margin: 1.5em auto;
+  max-width: var(--img-width) !important;
+  box-shadow: none;
+  transition: all 0.2s ease;
+}
+.night_mode img {
+  filter: var(--img-filter);
+  opacity: var(--img-brightness);
+}
+img:hover {
+  cursor: zoom-in;
+  filter: none;
+  max-width: 100% !important;
+  opacity: 1;
+}
+img + br {
+  display: none;
+}
+html:not(.mobile) img:active {
+  border: 1px solid var(--link-fg-active);
+  cursor: zoom-out;
+  filter: none;
+  left: 0;
+  max-width: 95% !important;
+  opacity: 1;
+  position: fixed;
+  top: 0;
+  transform: translate(calc(50vw - 50%), calc(50vh - 50%));
+  z-index: 100;
+  box-shadow: none;
+}
+
+/* -------------------------------------------------- HYPERLINKS */
+a, a:visited {
+  text-decoration: none;
+  color: var(--link-fg);
+  font-weight: 500;
+}
+a:hover, a:active {
+  text-decoration: underline;
+  color: var(--link-fg-active);
+}
+
+/* -------------------------------------------------- TABLES */
+table {
+  border-collapse: separate;
+  border-spacing: 0;
+  margin: 1.5em auto;
+  max-width: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--divider);
+}
+table thead {
+  background-color: var(--tag-bg);
+}
+table th {
+  border-bottom: solid 1px var(--divider);
+  padding: 0.75em 1em;
+  font-weight: 600;
+  text-align: left;
+}
+table td {
+  border-bottom: solid 1px var(--divider);
+  padding: 0.75em 1em;
+}
+table tr:last-child td {
+  border-bottom: none;
+}
+
+/* -------------------------------------------------- FORMATTING */
+b { color: var(--text-fg); font-weight: 700; }
+i { color: var(--text-fg); }
+u { color: var(--text-fg); text-decoration-color: var(--text-fg-faint); text-decoration-thickness: 1px; }
+pre { white-space: normal; background: var(--tag-bg); padding: 1em; border-radius: 8px; font-family: monospace; border: 1px solid var(--divider); }
